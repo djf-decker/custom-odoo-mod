@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="spaceship_gen_menu_root" name="Spaceships">
+        <menuitem id="spaceship_gen_first_level_menu" name="First Level">
+            <menuitem id="spaceship_gen_menu_action" action="spaceship_gen_action"/>
+        </menuitem>
+    </menuitem>
+</odoo>
