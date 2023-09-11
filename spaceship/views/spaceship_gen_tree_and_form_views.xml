@@ -5,10 +5,10 @@
         <field name="model">spaceship.gen</field>
         <field name="arch" type="xml">
             <tree string="Channel">
-                <field width="25%" name="spaceship_mfg_model" string="Spaceship Manufacturer Model"/>
-                <field width="25%" name="spaceship_mfg_date"  string="Date of Manufacture"/>
-                <field width="25%" name="lightspeed_capable"  string="Has Lightspeed Capability"/>
-                <field width="25%" name="planet_of_origin"    string="Planet of Origin"/>
+                <field width="25%" name="name"/>
+                <field width="25%" name="spaceship_mfg_date"/>
+                <field width="25%" name="lightspeed_capable"/>
+                <field width="25%" name="planet_of_origin"/>
             </tree>
         </field>
     </record>
@@ -20,13 +20,28 @@
             <form string="New Spaceship :)">
                 <sheet>
                     <group>
-                        <field name="spaceship_mfg_model" string="Spaceship Manufacturer Model"/>
-                        <field name="spaceship_mfg_date"  string="Date of Manufacture"/>
-                        <field name="lightspeed_capable"  string="Has Lightspeed Capability"/>
-                        <field name="planet_of_origin"    string="Planet of Origin"/>
+                        <field name="spaceship_mfg"/>
+                        <field name="spaceship_mfg_model"/>
+                        <field name="spaceship_mfg_date"/>
+                        <field name="lightspeed_capable"/>
+                        <field name="planet_of_origin"/>
                     </group>
                 </sheet>
             </form>
+        </field>
+    </record>
+
+    <record id="spaceship_gen_view_search" model="ir.ui.view">
+        <field name="name">spaceship.gen.views</field>
+        <field name="model">spaceship.gen</field>
+        <field name="arch" type="xml">
+            <search string="Find a ship...">
+                <field name="spaceship_mfg"/>
+                <field name="spaceship_mfg_model"/>
+                <field name="spaceship_mfg_date"/>
+                <field name="lightspeed_capable"/>
+                <field name="planet_of_origin"/>
+            </search>
         </field>
     </record>
 </odoo>
