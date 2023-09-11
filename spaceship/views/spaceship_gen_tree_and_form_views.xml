@@ -5,10 +5,11 @@
         <field name="model">spaceship.gen</field>
         <field name="arch" type="xml">
             <tree string="Channel">
-                <field width="25%" name="name"/>
-                <field width="25%" name="spaceship_mfg_date"/>
-                <field width="25%" name="lightspeed_capable"/>
-                <field width="25%" name="planet_of_origin"/>
+                <field width="20%" name="name"/>
+                <field width="20%" name="years_of_age"/>
+                <field width="20%" name="spaceship_mfg_date"/>
+                <field width="20%" name="lightspeed_capable"/>
+                <field width="20%" name="planet_of_origin"/>
             </tree>
         </field>
     </record>

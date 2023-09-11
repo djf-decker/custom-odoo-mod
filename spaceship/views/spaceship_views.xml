@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <record id="spaceship_gen_action" model="ir.actions.act_window">
-        <field name="name">Spaceship Action</field>
+        <field name="name">Galaxy™ Spaceship Sales</field>
         <field name="res_model">spaceship.gen</field>
         <field name="view_mode">tree,form</field>
     </record>
