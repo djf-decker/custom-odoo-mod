@@ -5,7 +5,8 @@
     'data': [
         "security/ir.model.access.csv",
         "views/spaceship_views.xml",
-        "views/spaceship_gen_menus.xml"
+        "views/spaceship_gen_menus.xml",
+        "views/spaceship_gen_tree_and_form_views.xml"
     ],
     'author': "Dante Falzone",
     'category': 'sales/Galaxy Sales',

@@ -3,6 +3,6 @@
     <record id="spaceship_gen_action" model="ir.actions.act_window">
         <field name="name">Spaceship Action</field>
         <field name="res_model">spaceship.gen</field>
-        <field name="view_mode">tree</field>
+        <field name="view_mode">tree,form</field>
     </record>
 </odoo>
