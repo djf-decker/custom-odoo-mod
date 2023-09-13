@@ -24,6 +24,7 @@
                         <field name="spaceship_mfg"/>
                         <field name="spaceship_mfg_model"/>
                         <field name="spaceship_mfg_date"/>
+                        <field name="years_of_age"/>
                         <field name="lightspeed_capable"/>
                         <field name="planet_of_origin"/>
                     </group>
@@ -40,6 +41,7 @@
                 <field name="spaceship_mfg"/>
                 <field name="spaceship_mfg_model"/>
                 <field name="spaceship_mfg_date"/>
+                <field name="years_of_age"/>
                 <field name="lightspeed_capable"/>
                 <field name="planet_of_origin"/>
             </search>
