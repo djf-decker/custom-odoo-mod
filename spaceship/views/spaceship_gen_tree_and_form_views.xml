@@ -4,12 +4,15 @@
         <field name="name">spaceship.gen.views</field>
         <field name="model">spaceship.gen</field>
         <field name="arch" type="xml">
-            <tree string="Channel">
-                <field width="20%" name="name"/>
-                <field width="20%" name="years_of_age"/>
-                <field width="20%" name="spaceship_mfg_date"/>
-                <field width="20%" name="lightspeed_capable"/>
-                <field width="20%" name="planet_of_origin"/>
+            <tree>
+                <field width="14.28%" name="name"/>
+                <field width="14.28%" name="years_of_age"/>
+                <field width="14.28%" name="spaceship_mfg_date"/>
+                <field width="14.28%" name="lightspeed_capable"/>
+                <field width="14.28%" name="planet_of_origin"/>
+                <field name="currency_id" invisible="1"/>
+                <field width="14.28%" name="highest_bid" widget="monetary"/>
+                <field width="14.28%" name="highest_bidder"/>
             </tree>
         </field>
     </record>
@@ -18,7 +21,14 @@
         <field name="name">spaceship.gen.views</field>
         <field name="model">spaceship.gen</field>
         <field name="arch" type="xml">
-            <form string="New Spaceship :)">
+            <form>
+                <header>
+                    <button
+                        name="spaceship_gen_place_bid"
+                        type="action"
+                        string="Click here to bid on this ship"
+                    />
+                </header>
                 <sheet>
                     <group>
                         <field name="spaceship_mfg"/>
@@ -29,6 +39,17 @@
                         <field name="planet_of_origin"/>
                     </group>
                 </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="spaceship_gen_place_bid" model="ir.ui.view">
+        <field name="name">spaceship.gen.views</field>
+        <field name="model">spaceship.gen</field>
+        <field name="arch" type="xml">
+            <form>
+                <field name="highest_bid"/>
+                <field name="highest_bidder"/>
             </form>
         </field>
     </record>

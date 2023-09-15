@@ -24,6 +24,19 @@ class Spaceship(models.Model):
     lightspeed_capable = fields.Boolean(required=True, string="Has Lightspeed Capability")
     planet_of_origin = fields.Char(default="Earth", string="Planet of Origin")
 
+    # Boilerplate to allow me to use a currency for a monetary field
+    company_id = fields.Many2one('res.company', store=True, copy=False,
+                                 string="Company",
+                                 default=lambda self: self.env.user.company_id.id)
+    currency_id = fields.Many2one('res.currency', string="Currency",
+                                  related='company_id.currency_id',
+                                  default=lambda
+                                      self: self.env.user.company_id.currency_id.id)
+
+    # Attributes for bidding on ships
+    highest_bidder = fields.Char(string="Highest Bidder", default="No bids yet")
+    highest_bid = fields.Monetary(string="Highest Bid", currency_field="currency_id", default=0.00)
+
     @api.depends("spaceship_mfg", "spaceship_mfg_model")
     def _compute_name(self):
         for record in self:
@@ -40,3 +53,8 @@ class Spaceship(models.Model):
             current_year = self._canon_present_day.year
             new_mfg_year = current_year - int(record.years_of_age)
             record.spaceship_mfg_date = record.spaceship_mfg_date.replace(year=new_mfg_year)
+
+    def place_bid(self):
+        for record in self:
+            print(f"Placing a bid on {record.name}!")
+        return True
