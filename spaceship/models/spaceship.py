@@ -54,6 +54,15 @@ class Spaceship(models.Model):
             new_mfg_year = current_year - int(record.years_of_age)
             record.spaceship_mfg_date = record.spaceship_mfg_date.replace(year=new_mfg_year)
 
+    @api.constrains("spaceship_mfg_date")
+    def _check_mfg_date(self):
+        for record in self:
+            if record.spaceship_mfg_date > self._canon_present_day:
+                raise ValidationError(
+                    "A spaceship's manufacturing date cannot be in the future "
+                    + f"relative to {self._canon_present_day}."
+                )
+
     def launch_bid_wizard(self):
         wizard = self.env["spaceship.bid.wizard"].create({
             "spaceship_id": self.id
