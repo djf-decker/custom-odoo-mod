@@ -1,3 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 spaceship.access_spaceship_gen,access_spaceship_gen,spaceship.model_spaceship_gen,base.group_user,1,1,1,1
 spaceship.access_spaceship_mfg,access_spaceship_mfg,spaceship.model_spaceship_mfg,base.group_user,1,1,1,1
+spaceship.access_spaceship_bid_wizard,access_spaceship_bid_wizard,spaceship.model_spaceship_bid_wizard,base.group_user,1,1,1,1

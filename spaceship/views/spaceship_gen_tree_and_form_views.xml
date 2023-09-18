@@ -28,7 +28,7 @@
                     https://www.cybrosys.com/odoo/odoo-books/odoo-16-development/server-side-development/wizard/
                     -->
                     <button
-                        name="place_bid"
+                        name="launch_bid_wizard"
                         string="Bid on this ship"
                         class="oe_highlight"
                         type="object"
@@ -62,4 +62,35 @@
             </search>
         </field>
     </record>
+
+    <record model="ir.ui.view" id="bid_wizard_form_view">
+        <field name="name">Place bid</field>
+        <field name="model">spaceship.bid.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Bid on a ship">
+                <sheet>
+                    <separator
+                        string="Note: your bid won't be saved unless your bid exceeds the current highest bid."
+                    />
+                    <group>
+                        <group>
+                            <field name="spaceship_id"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="bid_amount" required="1" widget="monetary"/>
+                        </group>
+                    </group>
+                    <separator string="Bidder's Name"/>
+                    <field name="bidder_name" required="1" nolabel="1" placeholder="Write your name"/>
+                </sheet>
+                <footer>
+                    <button type="object" name="place_bid_from_wizard" class="btn btn-primary"
+                            string="PLACE BID"/>
+                    <button string="CANCEL" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
 </odoo>

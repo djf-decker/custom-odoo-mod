@@ -53,15 +53,22 @@ class Spaceship(models.Model):
             new_mfg_year = current_year - int(record.years_of_age)
             record.spaceship_mfg_date = record.spaceship_mfg_date.replace(year=new_mfg_year)
 
-    def place_bid(self):
+    def launch_bid_wizard(self):
         wizard = self.env["spaceship.bid.wizard"].create({
             "spaceship_id": self.id
         })
         return {
-            'name': _("Spaceship Bid"),
+            'name': "Spaceship Bid",
             'type': 'ir.actions.act_window',
             'res_model': 'spaceship.bid.wizard',
             'view_mode': 'form',
             'res_id': wizard.id,
             'target': 'new'
         }
+
+    def place_bid(self, bid: float, bidder_name: str):
+        for record in self:
+            if bid > record.highest_bid:
+                record.highest_bid = bid
+                record.highest_bidder = bidder_name
+                print(f"-=[ {bidder_name} placed a bid of {bid} on {self.name}. ]=-")
