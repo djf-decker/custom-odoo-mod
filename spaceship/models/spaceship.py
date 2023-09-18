@@ -30,8 +30,7 @@ class Spaceship(models.Model):
                                  default=lambda self: self.env.user.company_id.id)
     currency_id = fields.Many2one('res.currency', string="Currency",
                                   related='company_id.currency_id',
-                                  default=lambda
-                                      self: self.env.user.company_id.currency_id.id)
+                                  default=lambda self: self.env.user.company_id.currency_id.id)
 
     # Attributes for bidding on ships
     highest_bidder = fields.Char(string="Highest Bidder", default="No bids yet")
@@ -55,6 +54,14 @@ class Spaceship(models.Model):
             record.spaceship_mfg_date = record.spaceship_mfg_date.replace(year=new_mfg_year)
 
     def place_bid(self):
-        for record in self:
-            print(f"Placing a bid on {record.name}!")
-        return True
+        wizard = self.env["spaceship.bid.wizard"].create({
+            "spaceship_id": self.id
+        })
+        return {
+            'name': _("Spaceship Bid"),
+            'type': 'ir.actions.act_window',
+            'res_model': 'spaceship.bid.wizard',
+            'view_mode': 'form',
+            'res_id': wizard.id,
+            'target': 'new'
+        }
