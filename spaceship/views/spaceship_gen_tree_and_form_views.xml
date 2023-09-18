@@ -5,14 +5,15 @@
         <field name="model">spaceship.gen</field>
         <field name="arch" type="xml">
             <tree>
-                <field width="14.28%" name="name"/>
-                <field width="14.28%" name="years_of_age"/>
-                <field width="14.28%" name="spaceship_mfg_date"/>
-                <field width="14.28%" name="lightspeed_capable"/>
-                <field width="14.28%" name="planet_of_origin"/>
+                <field width="12.5%" name="name"/>
+                <field width="12.5%" name="years_of_age"/>
+                <field width="12.5%" name="spaceship_mfg_date"/>
+                <field width="12.5%" name="lightspeed_capable"/>
+                <field width="12.5%" name="planet_of_origin"/>
                 <field name="currency_id" invisible="1"/>
-                <field width="14.28%" name="highest_bid" widget="monetary"/>
-                <field width="14.28%" name="highest_bidder"/>
+                <field width="12.5%" name="highest_bid" widget="monetary"/>
+                <field width="12.5%" name="highest_bidder"/>
+                <field width="12.5%" name="date_of_last_bid"/>
             </tree>
         </field>
     </record>
@@ -92,5 +93,34 @@
             </form>
         </field>
     </record>
-
+<!--
+    <record model="ir.ui.view" id="sale_wizard_form_view">
+        <field name="name">Sell to the current highest bidder</field>
+        <field name="model">spaceship.sale.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Sell a ship">
+                <sheet>
+                    <separator
+                        string="Don't do this unless you're sure that no one else is going to bid higher."
+                    />
+                    <group>
+                        <group>
+                            <field name="spaceship_id"/>
+                        </group>
+                        <group>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="bid_amount" required="1" widget="monetary"/>
+                        </group>
+                    </group>
+                    <separator string="Bidder's Name"/>
+                    <field name="bidder_name" required="1" nolabel="1" placeholder="Write your name"/>
+                </sheet>
+                <footer>
+                    <button type="object" name="place_bid_from_wizard" class="btn btn-primary"
+                            string="PLACE BID"/>
+                    <button string="CANCEL" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>-->
 </odoo>

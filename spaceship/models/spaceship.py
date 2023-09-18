@@ -37,6 +37,8 @@ class Spaceship(models.Model):
     # Attributes for bidding on ships
     highest_bidder = fields.Char(string="Highest Bidder", default="No bids yet")
     highest_bid = fields.Monetary(string="Highest Bid", currency_field="currency_id", default=0.00)
+    date_of_last_bid = fields.Date(string="Date of highest bid",  required=False)
+    sale_record = fields.Many2one("spaceship.sale", required=False, string="Sale record")
 
     @api.depends("spaceship_mfg", "spaceship_mfg_model")
     def _compute_name(self):
