@@ -1,4 +1,5 @@
 from odoo import api, fields, models
+from odoo.exceptions import ValidationError
 from dateutil.relativedelta import relativedelta
 from datetime import date
 
@@ -72,3 +73,7 @@ class Spaceship(models.Model):
                 record.highest_bid = bid
                 record.highest_bidder = bidder_name
                 print(f"-=[ {bidder_name} placed a bid of {bid} on {self.name}. ]=-")
+            elif bid < 0:
+                raise ValidationError("You cannot bid a negative amount of money.")
+            else:
+                raise ValidationError("You cannot place a bid unless it is higher than the last highest bid.")
