@@ -7,6 +7,7 @@ from datetime import date
 class Spaceship(models.Model):
     _name = "spaceship.gen"
     _description = "Generic Spaceship"
+    _order = "spaceship_mfg desc, spaceship_mfg_model desc"
 
     # Since this app is for selling spaceships, possibly lightspeed-capable and offworld-manufactured,
     # I reckon spaceship ages as if it were 150 years in the future.
