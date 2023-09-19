@@ -84,8 +84,29 @@ class Spaceship(models.Model):
             if bid > record.highest_bid:
                 record.highest_bid = bid
                 record.highest_bidder = bidder_name
+                record.date_of_last_bid = self._canon_present_day
                 print(f"-=[ {bidder_name} placed a bid of {bid} on {self.name}. ]=-")
             elif bid < 0:
                 raise ValidationError("You cannot bid a negative amount of money.")
             else:
                 raise ValidationError("You cannot place a bid unless it is higher than the last highest bid.")
+
+    def launch_sale_wizard(self):
+        wizard = self.env["spaceship.sale.wizard"].create({
+            "spaceship_id": self.id
+        })
+        return {
+            'name': "Spaceship Sale",
+            'type': 'ir.actions.act_window',
+            'res_model': 'spaceship.sale.wizard',
+            'view_mode': 'form',
+            'res_id': wizard.id,
+            'target': 'new'
+        }
+
+    def sell_ship(self, sale_amount: float, buyer_name: str):
+        for record in self:
+            if record.sale_record is None:
+                print(f"{sale_amount} {buyer_name} {record.name} Not sold yet")
+            else:
+                print(record.sale_record)

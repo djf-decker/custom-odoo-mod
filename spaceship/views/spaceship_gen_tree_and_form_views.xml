@@ -34,6 +34,12 @@
                         class="oe_highlight"
                         type="object"
                     />
+                    <button
+                        name="launch_sale_wizard"
+                        string="Sell this ship"
+                        class="oe_highlight"
+                        type="object"
+                    />
                 </header>
                 <sheet>
                     <group>
@@ -93,7 +99,7 @@
             </form>
         </field>
     </record>
-<!--
+
     <record model="ir.ui.view" id="sale_wizard_form_view">
         <field name="name">Sell to the current highest bidder</field>
         <field name="model">spaceship.sale.wizard</field>
@@ -109,18 +115,18 @@
                         </group>
                         <group>
                             <field name="currency_id" invisible="1"/>
-                            <field name="bid_amount" required="1" widget="monetary"/>
+                            <field name="sale_amount" required="1" widget="monetary"/>
                         </group>
                     </group>
-                    <separator string="Bidder's Name"/>
-                    <field name="bidder_name" required="1" nolabel="1" placeholder="Write your name"/>
+                    <separator string="Buyer's Name"/>
+                    <field name="buyer_name" required="1" nolabel="1" placeholder="Write the buyer's name"/>
                 </sheet>
                 <footer>
-                    <button type="object" name="place_bid_from_wizard" class="btn btn-primary"
-                            string="PLACE BID"/>
+                    <button type="object" name="sell_ship_from_wizard" class="btn btn-primary"
+                            string="SELL SHIP"/>
                     <button string="CANCEL" special="cancel"/>
                 </footer>
             </form>
         </field>
-    </record>-->
+    </record>
 </odoo>
