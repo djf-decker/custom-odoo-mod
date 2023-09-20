@@ -4,4 +4,4 @@ spaceship.access_spaceship_mfg,access_spaceship_mfg,spaceship.model_spaceship_mf
 spaceship.access_spaceship_bid_wizard,access_spaceship_bid_wizard,spaceship.model_spaceship_bid_wizard,base.group_user,1,1,1,1
 spaceship.access_spaceship_sale_wizard,access_spaceship_sale_wizard,spaceship.model_spaceship_sale_wizard,base.group_user,1,1,1,1
 spaceship.access_spaceship_sale,access_spaceship_sale,spaceship.model_spaceship_sale,base.group_user,1,0,0,0
-spaceship.access_spaceship_sale,access_spaceship_sale,spaceship.model_spaceship_sale,base.group_user,1,0,0,0
+spaceship.access_spaceship_sale,access_spaceship_sale,spaceship.model_spaceship_sale,sales_team.group_sale_manager,1,1,1,1

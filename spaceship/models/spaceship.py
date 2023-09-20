@@ -85,7 +85,7 @@ class Spaceship(models.Model):
                 record.highest_bid = bid
                 record.highest_bidder = bidder_name
                 record.date_of_last_bid = self._canon_present_day
-                print(f"-=[ {bidder_name} placed a bid of {bid} on {self.name}. ]=-")
+                print(f"-=[ {bidder_name} placed a bid of {bid} on {record.name}. ]=-")
             elif bid < 0:
                 raise ValidationError("You cannot bid a negative amount of money.")
             else:
@@ -93,7 +93,9 @@ class Spaceship(models.Model):
 
     def launch_sale_wizard(self):
         wizard = self.env["spaceship.sale.wizard"].create({
-            "spaceship_id": self.id
+            "spaceship_id": self.id,
+            "sale_amount": self.highest_bid,
+            "buyer_name": self.highest_bidder
         })
         return {
             'name': "Spaceship Sale",
@@ -104,9 +106,26 @@ class Spaceship(models.Model):
             'target': 'new'
         }
 
+    # TODO: This method doesn't save a sale record for the ship. Why?
     def sell_ship(self, sale_amount: float, buyer_name: str):
         for record in self:
-            if record.sale_record is None:
-                print(f"{sale_amount} {buyer_name} {record.name} Not sold yet")
+            print(f"sale record: {str(record.sale_record)}")
+            if len(record.sale_record) == 0:
+                record.sale_record == self.env["spaceship.sale"].create({
+                    "date_of_sale": self._canon_present_day,
+                    "buyer_name": buyer_name,
+                    "sale_price": sale_amount
+                })
+                print(str(record.sale_record))
+                print(f"-=[ {buyer_name} bought {record.name} for € {sale_amount:.2f}. ]=-")
+            elif len(record.sale_record) > 1:
+                raise ValidationError(
+                    "There is more than one sale record for this ship. Contact admin to fix this."
+                )
+            elif len(record.sale_record) < 0:
+                raise ValidationError(
+                    "The database says there's a negative number of sale records for this ship. "
+                    + "Contact admin to fix this."
+                )
             else:
-                print(record.sale_record)
+                raise ValidationError("This ship is already sold.")

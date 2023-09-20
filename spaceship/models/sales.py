@@ -18,3 +18,6 @@ class Sale(models.Model):
     sale_price = fields.Monetary(string="Price for which it was sold", currency_field="currency_id")
 
 
+    # defined for debugging/logging purposes
+    def __str__(self):
+        return f"Sold to {self.buyer_name} for € {self.sale_price:.2f} on {self.date_of_sale}"
